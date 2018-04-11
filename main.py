@@ -21,11 +21,11 @@ form = """
             font: 16px sans-serif;
             border-radius: 10px; 
         }
-        textarea {{
+        textarea {
             margin: 10px 0;
             width: 540px;
             height: 120px;
-        }}
+        }
     </style>
      </head>
     <body>
@@ -58,8 +58,9 @@ def encrypt(text, rot):
     r_info = request.form['rot']
     new_msg = request.form['text']
     new_string = rotate_string (new_msg, r_info)
-    
-<h1> return form.format(new_string) </h1>
+    formated_string = new_string
+
+    return form.format(formated_string)
 
 app.run()
 
