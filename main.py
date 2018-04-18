@@ -13,24 +13,12 @@ form = """
 <html>
     <head>
         <style>
-        form{
-            background-color: #eee;
-            padding: 20px;
-            margin: 0 auto; 
-            width: 540px;
-            font: 16px sans-serif;
-            border-radius: 10px; 
-        }
-        textarea {
-            margin: 10px 0;
-            width: 540px;
-            height: 120px;
-        }
-    </style>
+        
+        </style>
      </head>
     <body>
    <!-- @todo set a form action to a route that takes the input and rotates the characters -->
-   <form action="encrypt", method ='POST'>
+   <form action="/encrypt", method ='POST'>
         <label>
             Rotating Number
             <input name="rot" value="0" type="text" />
@@ -50,17 +38,17 @@ form = """
 
 @app.route("/")
 def index():
-    return form
+    return form.format('')
 
 
 @app.route("/encrypt", methods =["POST"])
-def encrypt(text, rot):
+def encrypt():
     r_info = request.form['rot']
-    new_msg = request.form['text']
+    new_msg = request.form['message']
     new_string = rotate_string(new_msg, int(r_info))
-    formated_string = new_string
+    
 
-    return form.format(formated_string)
+    return form.format(new_string)
 
 app.run()
 
